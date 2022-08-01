@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en", xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <title>Create Task</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Create task</h1>
+
+        <form th:action="@{/tasks/{id}(id = ${projectId})}" th:object="${task}" method="post">
+            <input type="text" th:field="*{taskText}"/>
+            <select class="form-control" th:field="*{status.id}" id="dropDownStatus" >
+                <option value="0" ></option>
+                <option th:each="status : ${statusList}" th:value="${status.id}" th:text="${status.name}"></option>
+            </select>
+            <select class="form-control" th:field="*{user.id}" id="dropDownUser">
+                <option value="0" ></option>
+                <option th:each="user : ${userList}" th:value="${user.id}" th:text="${user.firstName}"></option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

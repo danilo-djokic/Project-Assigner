@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Task</title>
+</head>
+<body>
+    <form th:action="@{/tasks/edit/{id}(id = ${projectId})}"  method="post">
+        <input type="text" th:field="*{taskText}"/>
+        <select class="form-control" th:field="*{user.id}" id="dropDownUser">
+            <option value="0" ></option>
+            <option th:each="user : ${userList}" th:value="${user.id}" th:text="${user.firstName}"></option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

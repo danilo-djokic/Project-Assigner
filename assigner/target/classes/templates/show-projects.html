@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en", xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+<h1>Project list</h1>
+<a th:href="@{/projects/add}">Add new project</a>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Project name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each = "project: ${listProjects}" >
+            <td th:text = "${project.name}"></td>
+            <td th:text = "${project.description}"></td>
+            <td>
+                <form th:action ="@{/projects/{id}(id = ${project.id})}" method="get">
+                    <input type="submit" value="Edit project"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <form name="logoutForm" th:action="@{/logout}" method="post" >
+        <input type="submit" value="Sign Out"/>
+    </form>
+</body>
+</html>

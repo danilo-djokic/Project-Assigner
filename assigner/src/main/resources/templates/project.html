@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en", xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${project.name}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1 th:text="${project.name}"></h1>
+    <p th:text="${project.description}"></p>
+
+    <a th:href="@{/tasks/add/{id}(id = ${id})}">Add new task</a>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Task text</th>
+            <th>Creation date</th>
+            <th>Status</th>
+            <th>Assignee</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each = "task: ${project.tasks}">
+            <td th:text="${task.taskText}"/>
+            <td th:text="${task.creationDate}"/>
+            <td th:text="${task.status.name}"/>
+            <td th:text="${task.user.firstName}"/>
+<!--            <td>-->
+<!--                <a th:href="@{/tasks/edit/{id}(id = ${id})}">Edit task</a>-->
+<!--            </td>-->
+
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
