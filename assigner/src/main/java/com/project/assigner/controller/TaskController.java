@@ -32,11 +32,8 @@ public class TaskController {
 
     @GetMapping()
     public String updateDesignForm(Model model, Authentication authentication){
-        TaskCreationDto taskForm = new TaskCreationDto();
-        taskForm.addTask(new Task());
         model.addAttribute("listTasks",taskService.findAllByUserId((((User)authentication.getPrincipal())).getId()));
         model.addAttribute("statusList",statusService.findAll());
-        model.addAttribute("form", taskForm);
         return "show-tasks";
     }
 

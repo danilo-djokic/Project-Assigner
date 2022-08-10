@@ -10,6 +10,6 @@ import java.util.List;
 public interface UserService extends UserDetailsService {
     String signin(String email, String password);
 
-
+    void save(User user);
     List<User> findAllDevs();
 }

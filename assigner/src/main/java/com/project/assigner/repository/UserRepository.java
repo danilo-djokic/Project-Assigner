@@ -13,6 +13,6 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
 
-    @Query(value = "select * from User left join Role on User.role_id=Role.role_id where Role.name=\"DEV\" ", nativeQuery = true)
+    @Query(value = "select * from user left join role on user.role_id=role.role_id where role.name=\"DEV\" ", nativeQuery = true)
     List<User> findAllDevs();
 }

@@ -17,27 +17,12 @@
             </tr>
         </thead>
         <tbody>
-            <form th:action ="@{/tasks/update/{id}(id = ${task.id})}" th:object="${form}" method="post">
-                <fieldset>
-                    <tr th:each = "task, stat : *{tasks}">
-                        <td>
-                            <input type="hidden" th:field="*{tasks[__${stat.index}__].id}" th:value="${task.id}"  disabled>
-                        </td>
-                        <td>
-                            <input type="text" th:field="*{tasks[__${stat.index}__].taskText}" th:value="${task.taskText}"  disabled>
-                        </td>
-                        <td>
-                            <input type="text" th:field="*{tasks[__${stat.index}__].creationDate}" th:value="${task.creationDate}" disabled>
-                        </td>
-                        <td >
-                            <select class="form-control" id="dropDownList" th:field="*{tasks[__${stat.index}__].status}" th:value="${task.status}">
-                                <option th:each="status : ${statusList}" th:value="${status}" th:text="${status.name}" th:selected="${status.id ==task.status.id}"></option>
-                            </select>
-                            <input type="submit" th:value="Save"/>
-                        </td>
-                    </tr>
-                </fieldset>
-            </form>
+        <tr th:each = "task: ${listTasks}" >
+            <td th:text = "${task.taskText}"></td>
+            <td th:text="${task.creationDate}"></td>
+            <td th:text="${task.status.name}"></td>
+            <td><input type="submit" value="Change status"></td>
+        </tr>
         </tbody>
     </table>
 

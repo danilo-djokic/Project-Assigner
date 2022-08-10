@@ -28,6 +28,11 @@ public class UserServiceImpl implements UserService {
         return "logged in";
     }
 
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
     public List<User> findAllDevs() {
         return userRepository.findAllDevs();
     }

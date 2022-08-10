@@ -3,9 +3,7 @@ package com.project.assigner.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @ToString
+@NoArgsConstructor
 public class User implements UserDetails {
     @Id
     @SequenceGenerator(
@@ -32,6 +31,14 @@ public class User implements UserDetails {
     private String email;
 
     private String password;
+
+    public User(String firstName, String lastname, String email, String password, Role role){
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     @ToString.Exclude
     @ManyToOne(optional = false)
